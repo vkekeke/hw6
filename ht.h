@@ -339,7 +339,7 @@ void HashTable<K,V,Prober,Hash,KEqual>::insert(const ItemType& p)
     if(resizeAlpha_ != 1 && npos == loc) {
         throw std::logic_error("HashTable insert failed: table is full");
     }
-    if(nullptr == table_[loc] || loc == npos) {
+    if(loc == npos || nullptr == table_[loc]) {
         if(static_cast<double>(numOccupied_) / CAPACITIES[mIndex_] >= resizeAlpha_) {
             resize();
         }
